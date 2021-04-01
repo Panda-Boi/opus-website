@@ -1,0 +1,43 @@
+body{
+    background-color: grey;
+}
+
+
+#NavBar{
+
+    margin: 40px;
+
+}
+
+#NavBar table{
+
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: cornflowerblue;
+
+}
+
+#NavBar a:link, a:visited{
+
+    color: white;
+    font-size: 50px;
+    padding: 20px;
+    text-decoration: none;
+
+}
+
+#NavBar a:hover{
+
+    color: pink;
+
+}
+
+#Feed{
+
+    margin: 40px;
+    padding: 20px;
+    background-color: chartreuse;
+    font-size: 50px;
+    height: 486px;
+}

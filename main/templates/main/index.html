@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Hello</title>
+        <link rel="stylesheet" href="{% static 'main/styles.css' %}">
+    </head>
+    <body>
+        <div id="NavBar">
+            <table>
+                <tr>
+                    <td>
+                        <a href="{% url 'main:index' %}">Home</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'main:organisations' %}">Organisations</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'main:signUp' %}">Sign Up</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'main:aboutUs' %}">About Us</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div id='Feed'>
+
+        </div>
+    </body>
+</html>
