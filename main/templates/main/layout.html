@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% block title %}
+        {% endblock %}
+        <link rel="stylesheet" href="{% static 'main/styles.css' %}">
+    </head>
+    <body>
+        <div id="NavBar">
+            <table>
+                <tr>
+                    <td>
+                        <a href="{% url 'main:index' %}">Home</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'main:organisations' %}">Organisations</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'main:aboutUs' %}">About Us</a>
+                    </td>
+                    <td>
+                        {% if not request.user.username %}
+                        <a href="{% url 'main:login' %}">Sign Up/Login</a>
+                        {% elif request.user.username %}
+                        <a href="{% url 'main:user' %}">{{ request.user.username }}</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        {% block body %}
+        {% endblock %}
+
+        </div>
+    </body>
+</html>

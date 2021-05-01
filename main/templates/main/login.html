@@ -1,0 +1,32 @@
+{% extends "main/layout.html" %}
+
+{% block title %}
+
+    <title>Login</title>
+
+{% endblock %}
+
+{% block body %}
+
+<div id='Feed'>
+
+    {% if message %}
+    {{ message }}
+    {% endif %}
+
+    <form action="{% url 'main:login' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username" autocomplete="off">
+
+        <input type="password" name="password" placeholder="Password">
+
+        <input type="submit" value="Login">
+    </form>
+
+    <br>
+
+    <a href="{% url 'main:signUp' %}">Sign Up</a>
+
+</div>
+
+{% endblock %}

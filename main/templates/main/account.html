@@ -1,0 +1,13 @@
+{% extends "main/layout.html" %}
+
+{% block title %}
+<title>{{ request.user.username }}</title>
+{% endblock %}
+
+{% block body %}
+<div id='Feed'>
+
+    <a href="{% url 'main:logout' %}">Log Out</a>
+
+</div>
+{% endblock %}
