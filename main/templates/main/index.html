@@ -1,33 +1,16 @@
-{% load static %}
+{% extends "main/layout.html" %}
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Hello</title>
-        <link rel="stylesheet" href="{% static 'main/styles.css' %}">
-    </head>
-    <body>
-        <div id="NavBar">
-            <table>
-                <tr>
-                    <td>
-                        <a href="{% url 'main:index' %}">Home</a>
-                    </td>
-                    <td>
-                        <a href="{% url 'main:organisations' %}">Organisations</a>
-                    </td>
-                    <td>
-                        <a href="{% url 'main:signUp' %}">Sign Up</a>
-                    </td>
-                    <td>
-                        <a href="{% url 'main:aboutUs' %}">About Us</a>
-                    </td>
-                </tr>
-            </table>
-        </div>
+{% block title %}
 
-        <div id='Feed'>
+    <title>Home</title>
 
-        </div>
-    </body>
-</html>
+{% endblock %}
+
+{% block body %}
+
+    <div id='Feed'>
+
+    </div>
+
+{% endblock %}
+
