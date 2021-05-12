@@ -5,8 +5,17 @@
 {% endblock %}
 
 {% block body %}
-<div id='Feed'>
+<div id='Feed'>    
 
+    {{ name }}
+    <br>
+    {{ email }}
+    <br>
+    {{ info }}
+    <br>
+    <a href="http://{{ website }}">Website</a>
+    <br>
+    <br>
     <a href="{% url 'main:logout' %}">Log Out</a>
 
 </div>
