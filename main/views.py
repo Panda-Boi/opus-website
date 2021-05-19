@@ -10,7 +10,9 @@ def index(request):
 
 
 def organisations(request):
-    return HttpResponse('In progress')
+    return render(request, 'main/orgs.html', {
+        "metadata": request.user.data.metadata
+    })
 
 def login_view(request):
     if request.method == "POST":
@@ -45,7 +47,8 @@ def user(request):
         "email": request.user.email,
         "name": request.user.data.name,
         "info": request.user.data.info,
-        "website": request.user.data.website
+        "website": request.user.data.website,
+        "metadata": request.user.data.metadata
     })
 
 def signUp(request):
@@ -57,10 +60,11 @@ def signUp(request):
         info = request.POST["info"]
         name = request.POST["name"]
         website = request.POST["website"]
+        metadata = request.POST["metadata"]
 
         if password == password2:
             user = User.objects.create_user(username, email, password)
-            org = Org(user=user, name=name, info=info, website=website)
+            org = Org(user=user, name=name, info=info, website=website, metadata=metadata)
             org.save()
             return HttpResponseRedirect(reverse("main:login"))
         else:

@@ -6,7 +6,8 @@ class Org(models.Model):
     name = models.CharField(max_length = 64)
     info = models.CharField(max_length = 128)
     website = models.CharField(max_length = 64)
+    metadata = models.CharField(max_length = 128)
     
     def __str__(self):
-        return f"Username : {self.user}, Name : {self.name}, Info : {self.info}"
+        return f"Username : {self.user}, Name : {self.name}, Info : {self.info}, MetaData : {self.metadata}"
 
