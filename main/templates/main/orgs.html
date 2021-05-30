@@ -1,19 +1,19 @@
 {% extends "main/layout.html" %}
+{% load static %}
 
 {% block title %}
 <title>Organisations</title>
-
-<script>
-    let metadata = "{{ metadata }}";
-    
-</script>
-
+<script src="{% static 'main/orgs.js' %}"></script>
 {% endblock %}
 
 {% block body %}
 <div id="Feed">
 
-    hello!
+    <h2>Organisations:</h2>
+
+    <div id="orgs">
+
+    </div>
 
 </div>
 {% endblock %}

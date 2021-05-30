@@ -34,7 +34,7 @@
     
             function submit() {
                
-                document.querySelector("#metadata").value = metadata;
+                document.querySelector("#metadata").value = metadata + ",";
                                 
             };
         });
@@ -60,30 +60,30 @@
             
         </div>
 
-        <input type="text" name="username" placeholder="Username" autocomplete="off">
+        <input type="text" name="username" placeholder="Username" autocomplete="off" required="true">
 
         <br>
 
-        <input type="password" name="password" placeholder="Password">
+        <input type="password" name="password" placeholder="Password" required="true">
 
-        <input type="password" name="password2" placeholder="Re-enter Password">
+        <input type="password" name="password2" placeholder="Re-enter Password" required="true">
 
         <br>
 
-        <input type="text" name="name" placeholder="Name" autocomplete="off">
+        <input type="text" name="name" placeholder="Name" autocomplete="off" required="true">
 
-        <input type="text" name="email" placeholder="Email" autocomplete="off">     
+        <input type="text" name="email" placeholder="Email" autocomplete="off" required="true">     
         
         <br>
 
-        <input type="text" name="info" placeholder="About your Organisation" autocomplete="off" size="47">
+        <input type="text" name="info" placeholder="About your Organisation" autocomplete="off" size="47" required="true">
 
         <input type="text" name="website" placeholder="Website Link(If exists)" autocomplete="off">
 
         <br>
 
         <label for="selector">Select all that apply:</label> <br>
-        <select name="selector" id="selector">
+        <select name="selector" id="selector" required="true">
             <option value="climate">CLIMATE</option>
             <option value="equality">EQUALITY</option>
             <option value="education">EDUCATION)</option>

@@ -1,5 +1,5 @@
 from django.shortcuts import render, reverse
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from main.models import Org
@@ -10,9 +10,80 @@ def index(request):
 
 
 def organisations(request):
-    return render(request, 'main/orgs.html', {
-        "metadata": request.user.data.metadata
+
+    if not request.user.username:
+        return render(request, 'main/orgs.html', {
+            ##"orgs": Org 
+        })
+    else:
+        return render(request, 'main/orgs.html', {
+            "metadata": request.user.data.metadata
+            ##"orgs": Org
+        })
+    
+def orgs(request):
+    
+    ## get start and end points
+    start = int(request.GET.get("start") or 0)
+    end = int(request.GET.get("end") or start + 9)
+
+    ## generate orgs
+    data = []
+    dataUsers = []
+    users = User.objects.all()
+
+    if not request.user.username:
+
+        for user in users:
+
+            if user == request.user or user.is_superuser:
+                continue
+
+            o = {'name': user.data.name, 'info': user.data.info}
+            data.append(o)
+
+        return JsonResponse({
+            "orgs": data
+        })
+    else:
+
+        metadata = toArray(request.user.data.metadata)         
+
+        for user in users:
+
+            if user == request.user or user.is_superuser:
+                continue
+
+            for i in metadata:
+
+                for j in toArray(user.data.metadata):
+
+                    if i == j:                        
+                        if user in dataUsers:
+                            continue
+                        
+                        o = {'name': user.data.name, 'info': user.data.info}
+                        data.append(o) 
+                        dataUsers.append(user)         
+
+        return JsonResponse({
+            "orgs": data
+        })
+    
+
+def org(request):
+
+    name = request.GET.get("name")
+    o = Org.objects.get(name = name)
+    
+    return render(request, 'main/org.html', {
+        "email": o.user.email,
+        "name": o.name,
+        "info": o.info,
+        "website": o.website,
+        "metadata": o.metadata
     })
+
 
 def login_view(request):
     if request.method == "POST":
@@ -61,7 +132,7 @@ def signUp(request):
         name = request.POST["name"]
         website = request.POST["website"]
         metadata = request.POST["metadata"]
-
+    
         if password == password2:
             user = User.objects.create_user(username, email, password)
             org = Org(user=user, name=name, info=info, website=website, metadata=metadata)
@@ -73,3 +144,16 @@ def signUp(request):
             })
 
     return render(request, 'main/signUp.html')
+
+def toArray(string):
+
+    params = []
+    p = ""
+    for i in string:
+        if i == ",":
+            params.append(p)
+            p = ""
+        else:
+            p = p + i
+
+    return params

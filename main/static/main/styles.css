@@ -1,5 +1,5 @@
 body{
-    background-color: grey;
+    background-color: #73a98f;
 }
 
 
@@ -14,7 +14,7 @@ body{
     padding: 20px;
     margin-left: auto;
     margin-right: auto;
-    background-color: cornflowerblue;
+    background-color: #a44656;
 
 }
 
@@ -35,9 +35,26 @@ body{
 
 #Feed{
 
-    margin: 40px;
+    margin: 20px;
     padding: 20px;
-    background-color: chartreuse;
+    background-color: #f16158;
     font-size: 30px;
-    height: 486px;
+    min-height: 65vh;
+    
+}
+
+.org{
+
+    background-color: #2893da;
+    padding: 20px;
+    margin: 20px;
+
+}
+
+.heading{
+    font-weight: bold;
+}
+
+.infobutton{
+    float: right;
 }
