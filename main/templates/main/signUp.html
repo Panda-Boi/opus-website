@@ -1,51 +1,8 @@
 {% extends "main/layout.html" %}
 
-{% block title %}
-
-    <title>Sign Up</title>
-
-    <script>
-
-        let metadata = [];
-    
-        document.addEventListener('DOMContentLoaded', function() {
-            
-            document.querySelector("select").onchange = function() {
-    
-                for (i = 0; i < metadata.length; i++) {
-    
-                    if (metadata[i] === this.value) {
-                        metadata.splice(i, 1);
-                        this.options[this.selectedIndex].text = this.value.toUpperCase();
-                        console.log(metadata);
-                        return false;
-                    }
-    
-                }
-    
-                metadata.push(this.value);
-                this.options[this.selectedIndex].text = this.value.toUpperCase() + " ✅";
-    
-                console.log(metadata);
-    
-            };
-
-            document.querySelector('form').onsubmit = submit;
-    
-            function submit() {
-               
-                document.querySelector("#metadata").value = metadata + ",";
-                                
-            };
-        });
-    
-    </script>
-
-{% endblock %}
-
 {% block body %}
 
-<div id='Feed'>
+<div class='container'>
 
     <form action="{% url 'main:signUp' %}" method="POST">
         {% csrf_token %}
@@ -86,7 +43,7 @@
         <select name="selector" id="selector" required="true">
             <option value="climate">CLIMATE</option>
             <option value="equality">EQUALITY</option>
-            <option value="education">EDUCATION)</option>
+            <option value="education">EDUCATION</option>
             <option value="environment">ENVIRONMENT</option>
         </select>
 
@@ -96,5 +53,43 @@
     </form>
 
 </div>
+
+
+<script>
+
+    let metadata = [];
+
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        document.querySelector("select").onchange = function() {
+
+            for (i = 0; i < metadata.length; i++) {
+
+                if (metadata[i] === this.value) {
+                    metadata.splice(i, 1);
+                    this.options[this.selectedIndex].text = this.value.toUpperCase();
+                    console.log(metadata);
+                    return false;
+                }
+
+            }
+
+            metadata.push(this.value);
+            this.options[this.selectedIndex].text = this.value.toUpperCase() + " ✅";
+
+            console.log(metadata);
+
+        };
+
+        document.querySelector('form').onsubmit = submit;
+
+        function submit() {
+           
+            document.querySelector("#metadata").value = metadata + ",";
+                            
+        };
+    });
+
+</script>
 
 {% endblock %}

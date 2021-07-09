@@ -1,13 +1,9 @@
 {% extends "main/layout.html" %}
+
 {% load static %}
 
-{% block title %}
-<title>Organisations</title>
-<script src="{% static 'main/orgs.js' %}"></script>
-{% endblock %}
-
 {% block body %}
-<div id="Feed">
+<div class="container">
 
     <h2>Organisations:</h2>
 
@@ -16,4 +12,7 @@
     </div>
 
 </div>
+
+<script src="{% static 'main/orgs.js' %}"></script>
+
 {% endblock %}

@@ -1,20 +1,19 @@
 body{
-    background-color: #73a98f;
+    margin: 0px;
+    background-color: #ffffff;
 }
 
-
-#NavBar{
-
-    margin: 40px;
-
+#slink{
+    color: pink;
+    text-align: center;
 }
 
 #NavBar table{
 
+    width:100%;
     padding: 20px;
-    margin-left: auto;
-    margin-right: auto;
     background-color: #a44656;
+    text-align: center;
 
 }
 
@@ -33,22 +32,46 @@ body{
 
 }
 
-#Feed{
+.Feed{
 
     margin: 20px;
     padding: 20px;
-    background-color: #f16158;
     font-size: 30px;
     min-height: 65vh;
+    background-color: khaki;
+
+}
+.container{
+
+    width: 50%;
+    background-color: black;
+    margin: auto;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.container input{
     
+    text-align: center;
+
 }
 
 .org{
 
-    background-color: #2893da;
+    background-color: #ffffff;
     padding: 20px;
     margin: 20px;
+    width: fit-content;
+    height: fit-content;
+    display: inline-block;
 
+}
+
+.org:hover{
+    background-color: aquamarine;
 }
 
 .heading{

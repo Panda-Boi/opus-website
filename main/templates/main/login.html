@@ -8,24 +8,31 @@
 
 {% block body %}
 
-<div id='Feed'>
+<div class='Feed'>
 
     {% if message %}
     {{ message }}
     {% endif %}
 
-    <form action="{% url 'main:login' %}" method="POST">
-        {% csrf_token %}
-        <input type="text" name="username" placeholder="Username" autocomplete="off">
+    <div class="container">
+        
+        <form id='login' action="{% url 'main:login' %}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username" autocomplete="off">
 
-        <input type="password" name="password" placeholder="Password">
+            <br>
 
-        <input type="submit" value="Login">
-    </form>
+            <input type="password" name="password" placeholder="Password">
 
-    <br>
+            <br>
 
-    <a href="{% url 'main:signUp' %}">Sign Up</a>
+            <input type="submit" value="Login">
+
+        </form>
+
+    </div>
+
+    <a id='slink' href="{% url 'main:signUp' %}">Sign Up</a>
 
 </div>
 

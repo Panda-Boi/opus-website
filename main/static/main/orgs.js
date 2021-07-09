@@ -30,10 +30,15 @@ function add_org(contents) {
     // Create new org
     const org = document.createElement('div');
     org.className = 'org';
-    org.innerHTML = `<button class="infobutton" onclick=expandOrg("${contents.name}")> Learn More </button>` + `<div class="heading"> ${contents.name} </div>` + contents.info;
+    org.innerHTML = `<div class="heading"> ${contents.name} </div>` + `<img src="${contents.logo}}">`;
+    org.addEventListener("click", function() { expandOrg(contents.name) })
 
     // Add org to DOM
     document.querySelector('#orgs').append(org);
+
+    //const test = document.createElement('img');
+    //test.src = contents.i
+
 };
    
 function expandOrg(name) {

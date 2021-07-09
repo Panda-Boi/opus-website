@@ -1,11 +1,7 @@
 {% extends "main/layout.html" %}
 
-{% block title %}
-<title>{{ name }}</title>
-{% endblock %}
-
 {% block body %}
-<div id="Feed">
+<div class="container">
     {{ name }}
     <br>
     {{ email }}
@@ -13,6 +9,8 @@
     {{ info }}
     <br>
     {{ metadata }}
+    <br>
+    {{ logo }}
     <br>
     <a href="http://{{ website }}">Website</a>
 

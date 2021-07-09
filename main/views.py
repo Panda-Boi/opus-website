@@ -3,25 +3,25 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from main.models import Org
+import os
 
-# Create your views here.
+
 def index(request):
-    return render(request, 'main/index.html')
+    return render(request, 'main/index.html', { "title": "Home"})
 
 
 def organisations(request):
 
     if not request.user.username:
-        return render(request, 'main/orgs.html', {
-            ##"orgs": Org 
-        })
+        return render(request, 'main/orgs.html', { "title": "Organisations"})
     else:
         return render(request, 'main/orgs.html', {
-            "metadata": request.user.data.metadata
-            ##"orgs": Org
+            "metadata": request.user.data.metadata,
+            "title": "Organisations"
         })
     
-def orgs(request):
+
+def orgs(request):    
     
     ## get start and end points
     start = int(request.GET.get("start") or 0)
@@ -77,6 +77,7 @@ def org(request):
     o = Org.objects.get(name = name)
     
     return render(request, 'main/org.html', {
+        "title":o.name,
         "email": o.user.email,
         "name": o.name,
         "info": o.info,
@@ -85,7 +86,7 @@ def org(request):
     })
 
 
-def login_view(request):
+def login(request):
     if request.method == "POST":
         # Accessing username and password from form data
         username = request.POST["username"]
@@ -101,26 +102,32 @@ def login_view(request):
         # Otherwise, return login page again with new context
         else:
             return render(request, "main/login.html", {
-                "message": "Invalid Credentials"
+                "message": "Invalid Credentials",
+                "title": "Login"
             })
     
-    return render(request, 'main/login.html')
+    return render(request, 'main/login.html', { "title": "Login" })
 
-def logout_view(request):
+
+def logout(request):
     logout(request)
     return HttpResponseRedirect(reverse("main:index"))
 
+
 def aboutUs(request):
     return HttpResponse('In progress')
+
 
 def user(request):
     return render(request, 'main/account.html', {
         "email": request.user.email,
         "name": request.user.data.name,
-        "info": request.user.data.info,
+        "info": request.user.data.info, 
         "website": request.user.data.website,
-        "metadata": request.user.data.metadata
+        "metadata": request.user.data.metadata,
+        "title": request.user.username
     })
+
 
 def signUp(request):
     if request.method == "POST":
@@ -140,10 +147,12 @@ def signUp(request):
             return HttpResponseRedirect(reverse("main:login"))
         else:
             return render(request, 'main/signUp.html', {
-                'message': 'Passwords do not match'
+                'message': 'Passwords do not match',
+                "title": "Sign Up"
             })
 
-    return render(request, 'main/signUp.html')
+    return render(request, 'main/signUp.html', { "title": "Sign Up" })
+
 
 def toArray(string):
 
