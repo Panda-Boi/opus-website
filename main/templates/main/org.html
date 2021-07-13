@@ -1,19 +1,23 @@
 {% extends "main/layout.html" %}
 
 {% block body %}
-<div class="container">
-    {{ name }}
-    <br>
-    {{ email }}
-    <br>
-    {{ info }}
-    <br>
-    {{ metadata }}
-    <br>
-    {{ logo }}
-    <br>
-    <a href="http://{{ website }}">Website</a>
+<div class="container-fluid">
+
+    <div class="row" style="margin-left: 10px;">
+        <div class="col-2" style="padding: 0;">
+            <img src="{{ user.data.logo.url }}" alt="logo">
+        </div>
+        <div class="col-10" style="padding: 0;">
+            <h1>{{ user.data.name }}</h1>
+            <p class="fs-4">{{ user.data.info }}</p>
+        </div>
+    </div>
+    <div class="row" style="margin-left: 10px">
+        <div class="col">
+            <h2>Our Socials:</h2>
+            Website: <a href="{{ user.data.website }}">Our Website</a>
+        </div>
+    </div>
 
 </div>
-
 {% endblock %}

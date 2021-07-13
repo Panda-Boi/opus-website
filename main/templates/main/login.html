@@ -8,32 +8,41 @@
 
 {% block body %}
 
-<div class='Feed'>
+<main class='text-center' style="margin: auto;max-width: 350px;">
 
-    {% if message %}
-    {{ message }}
+    {% if type == "danger" %}
+    <div class="alert alert-danger" role="alert">
+        {{ message }}
+    </div>
+    {% elif type == "success" %}
+        <div class="alert alert-success" role="alert">
+            {{ message }}
+        </div>  
     {% endif %}
 
-    <div class="container">
-        
-        <form id='login' action="{% url 'main:login' %}" method="POST">
-            {% csrf_token %}
-            <input type="text" name="username" placeholder="Username" autocomplete="off">
+    <form id='login' action="{% url 'main:login' %}" method="POST">
 
-            <br>
+        {% csrf_token %}
+    
+        <h1 class="h3 mb-4 fw-normal">Log In</h1>
 
-            <input type="password" name="password" placeholder="Password">
+        <div class="form-floating mb-4">
+            <input type="text" class="form-control" id="username" name="username" placeholder="Username" autocomplete="off" required>
+            <label for="username">Username</label>  
+        </div>
 
-            <br>
+        <div class="form-floating mb-4">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+            <label for="password">Password</label>
+        </div>
 
-            <input type="submit" value="Login">
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+    
+    </form>
 
-        </form>
+    <p class="mt-4 mb-3 text-muted">Dont have an account?<a id='slink' href="{% url 'main:signUp' %}">Sign Up</a></p>
+    
 
-    </div>
-
-    <a id='slink' href="{% url 'main:signUp' %}">Sign Up</a>
-
-</div>
+</main>
 
 {% endblock %}

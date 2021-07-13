@@ -3,16 +3,34 @@
 {% load static %}
 
 {% block body %}
-<div class="container">
+<div class="container-fluid">
 
-    <h2>Organisations:</h2>
-
-    <div id="orgs">
-
+    <div class="row" style="margin-left: 10px;margin-right: 10px;">
+        <div class="col">
+            <h2>Organisations:</h2>
+        </div>
+        {% if request.user.username %}
+        <div class="col">
+            <div class="btn-group float-end" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-outline-primary" onclick="showAll(event)" data-url="{% url 'main:organisations' %}">Show All</button>
+                <button type="button" class="btn btn-outline-primary" onclick="showRelated()">Show Related</button>
+            </div>
+        </div>
+        {% endif %}
     </div>
 
-</div>
+    <div class="row" style="margin-left: 10px;margin-right: 10px;">
+        {% for org in orgs %}
+        <div data-name="{{ org.data.name }}" class="col-2 text-center user-select-none border border-2 org" style="padding: 1%;margin: 1%;" onclick="expandOrg(event)">
+            <br>
+            <img src="{{ org.data.logo.url }}">
+            <h2>{{ org.data.name }}</h2>
+        </div>        
+        {% endfor %}
+    </div>
 
+
+</div>
 <script src="{% static 'main/orgs.js' %}"></script>
 
 {% endblock %}

@@ -3,15 +3,17 @@
 {% block body %}
 <div class='container'>    
 
-    {{ name }}
+    {{ user.data.name }}
     <br>
-    {{ email }}
+    {{ user.data.email }}
     <br>
-    {{ info }}
+    {{ user.data.info }}
     <br>
-    {{ metadata }}
+    {{ user.data.metadata }}
     <br>
-    <a href="http://{{ website }}">Website</a>
+    <a href="http://{{ user.data.website }}">Website</a>
+    <br>
+    <img src="{{ user.data.logo.url }}"></img>
     <br>
     <br>
     <a href="{% url 'main:logout' %}">Log Out</a>
